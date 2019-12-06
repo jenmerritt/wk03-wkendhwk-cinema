@@ -36,6 +36,17 @@ class Customer
     return customers.map{ |customer| Customer.new(customer)}
   end
 
+  def films()
+    sql = "SELECT films.* FROM films
+    INNER JOIN tickets
+    ON tickets.film_id = films.id
+    WHERE customer_id = $1;"
+    values = [@id]
+    pg_result_of_films = SqlRunner.run(sql, values)
+    array_of_films = pg_result_of_films.map {|film| Film.new(film)}
+    return array_of_films
+  end
+
 # UPDATE
 
   def update()
