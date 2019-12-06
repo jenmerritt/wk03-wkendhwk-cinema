@@ -36,18 +36,21 @@ class Film
     return films.map{ |film| Film.new(film)}
   end
 
+
+# The below function uses an inner join to search for all customers that have seen the film on which the function is being run. The sql statement does this by matching the film id and customer id's using the tickets table, which is the join table in this scenario. The function returns an array of customers matching the sql statement.
+
   def customers()
     sql = "SELECT customers.* FROM customers
     INNER JOIN tickets
     ON tickets.customer_id = customers.id
     WHERE film_id = $1;"
     values = [@id]
-    pg_result_of_customers = SqlRunner.run(sql, values)
-    array_of_customers = pg_result_of_customers.map {|customer| Customer.new(customer)}
+    result = SqlRunner.run(sql, values)
+    array_of_customers = result.map {|customer| Customer.new(customer)}
     return array_of_customers
   end
 
-# number of customers:
+# number of customers seeing a certain film::
   def number_of_customers()
     list_of_customers = self.customers
     return list_of_customers.length
@@ -76,9 +79,6 @@ end
   sql = "DELETE FROM films;"
   SqlRunner.run(sql)
   end
-
-
-
 
 
 end

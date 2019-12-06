@@ -125,5 +125,13 @@ class Customer
     return tickets_bought.length
   end
 
+# FOR PDA: The below function searches the Customer class and takes the customers name and funds, then returns the data for when the funds are greater than 7. The matching customers are returned in an array, ordered by funds, in ascending order.
+
+def self.all_by_funds()
+  sql = "SELECT customers.name, customers.funds FROM customers WHERE funds > 7 ORDER BY funds ASC;"
+  customers = SqlRunner.run(sql)
+  return customers.map{ |customer| Customer.new(customer)}
+end
+
 
 end
