@@ -25,5 +25,5 @@ CREATE TABLE screenings(
 CREATE TABLE tickets(
   id SERIAL PRIMARY KEY,
   customer_id INT NOT NULL REFERENCES customers(id) ON DELETE CASCADE,
-  film_id INT NOT NULL REFERENCES films(id) ON DELETE CASCADE
+  screening_id INT NOT NULL REFERENCES screenings(id) ON DELETE CASCADE
 );

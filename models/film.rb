@@ -37,12 +37,26 @@ class Film
   end
 
 
-# The below function uses an inner join to search for all customers that have seen the film on which the function is being run. The sql statement does this by matching the film id and customer id's using the tickets table, which is the join table in this scenario. The function returns an array of customers matching the sql statement.
+# PDA: The below function uses an inner join to search for all customers that have seen the film on which the function is being run. The sql statement does this by matching the film id and customer id's using the tickets table, which is the join table in this scenario. The function returns an array of customers matching the sql statement.
 
+  # def customers()
+  #   sql = "SELECT customers.* FROM customers
+  #   INNER JOIN tickets
+  #   ON tickets.customer_id = customers.id
+  #   WHERE film_id = $1;"
+  #   values = [@id]
+  #   result = SqlRunner.run(sql, values)
+  #   array_of_customers = result.map {|customer| Customer.new(customer)}
+  #   return array_of_customers
+  # end
+
+# refactored with screenings table:
   def customers()
     sql = "SELECT customers.* FROM customers
+    INNER JOIN screenings
+    ON screenings.film_id = films.id
     INNER JOIN tickets
-    ON tickets.customer_id = customers.id
+    ON tickets.screening_id = screenings.id
     WHERE film_id = $1;"
     values = [@id]
     result = SqlRunner.run(sql, values)
