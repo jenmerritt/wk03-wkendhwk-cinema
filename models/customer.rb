@@ -75,19 +75,6 @@ class Customer
 # EXTENSIONS
 
 # ## Buy ticket with no check on affordance:
-# To buy ticket, need to put film to buy ticket for as parameter.
-  def buy_ticket(film)
-# Then need to create a ticket and save it:
-    new_ticket = Ticket.new({
-      'customer_id' => @id,
-      'film_id' => film.id
-      })
-    new_ticket.save
-# Then reduce the funds the customer has by the price of the film
-    @funds -= film.price
-    return "Your ticket number is #{new_ticket.id}."
-  end
-
 # # To buy ticket, need to put film to buy ticket for as parameter.
 #   def buy_ticket(film)
 # # Then need to create a ticket and save it:
@@ -100,6 +87,25 @@ class Customer
 #     @funds -= film.price
 #     return "Your ticket number is #{new_ticket.id}."
 #   end
+
+## Buy ticket with check on affordance:
+
+# To buy ticket, need to put film to buy ticket for as parameter.
+  def buy_ticket(film)
+  # then need to check if funds are greater than or equal to price.
+    if @funds >= film.price
+  # Then need to create a ticket and save it:
+      new_ticket = Ticket.new({
+        'customer_id' => @id,
+        'film_id' => film.id
+        })
+      new_ticket.save
+  # Then reduce the funds the customer has by the price of the film
+      @funds -= film.price
+      return "Your ticket number is #{new_ticket.id}."
+    end
+    return "Sorry, you do not have sufficient funds."
+  end
 
 
 end

@@ -17,7 +17,7 @@ customer1.save()
 
 customer2 = Customer.new({
   'name' => 'Ken Adams',
-  'funds' => 5
+  'funds' => 8
   })
 
 customer2.save()
