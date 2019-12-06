@@ -1,4 +1,5 @@
 DROP TABLE IF EXISTS tickets;
+-- DROP TABLE IF EXISTS screenings;
 DROP TABLE IF EXISTS films;
 DROP TABLE IF EXISTS customers;
 
@@ -13,6 +14,12 @@ CREATE TABLE films(
   title VARCHAR(255),
   price INT
 );
+
+-- CREATE TABLE films(
+--   id SERIAL PRIMARY KEY,
+--   title VARCHAR(255),
+--   price INT
+-- );
 
 CREATE TABLE tickets(
   id SERIAL PRIMARY KEY,
