@@ -104,7 +104,25 @@ class Customer
       @funds -= film.price
       return "Your ticket number is #{new_ticket.id}."
     end
+  # return message if cannot be afforded:
     return "Sorry, you do not have sufficient funds."
+  end
+
+# Check how many tickets were bought by a customer:
+
+# return array of the tickets
+  def tickets()
+    sql = "SELECT * FROM tickets WHERE customer_id = $1;"
+    values = [@id]
+    pg_result = SqlRunner.run(sql, values)
+    array_of_tickets = pg_result.map { |ticket| Ticket.new(ticket)}
+    return array_of_tickets
+  end
+
+# find length of tickets array
+  def number_of_tickets()
+    tickets_bought = self.tickets
+    return tickets_bought.length
   end
 
 

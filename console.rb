@@ -10,7 +10,7 @@ Customer.delete_all
 
 customer1 = Customer.new({
   'name' => 'Regina Phalange',
-  'funds' => 25
+  'funds' => 50
   })
 
 customer1.save()
