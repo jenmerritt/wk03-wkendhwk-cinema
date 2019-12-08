@@ -51,24 +51,28 @@ class Film
   # end
 
 # refactored with screenings table:
-  def customers()
-    sql = "SELECT customers.* FROM customers
-    INNER JOIN screenings
-    ON screenings.film_id = films.id
-    INNER JOIN tickets
-    ON tickets.screening_id = screenings.id
+  # def customers()
+  #   sql = ""
+  #   values = [@id]
+  #   result = SqlRunner.run(sql, values)
+  #   array_of_customers = result.map {|customer| Customer.new(customer)}
+  #   return array_of_customers
+  # end
+
+  def screenings()
+    sql = "SELECT * FROM screenings
     WHERE film_id = $1;"
     values = [@id]
     result = SqlRunner.run(sql, values)
-    array_of_customers = result.map {|customer| Customer.new(customer)}
-    return array_of_customers
+    array_of_screenings = result.map {|screening| Screening.new(screening)}
+    return array_of_screenings
   end
 
-# number of customers seeing a certain film::
-  def number_of_customers()
-    list_of_customers = self.customers
-    return list_of_customers.length
-  end
+# # number of customers seeing a certain film::
+#   def number_of_customers()
+#     list_of_customers = self.customers
+#     return list_of_customers.length
+#   end
 
 # UPDATE
 
