@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h1>Now Showing</h1>
+    <hr class="red-separator">
+    <br/>
+    <br/>
+    <ul>
+      <% for film in @all_films %>
+        <li class="film-list-home"><a href="/films/<%= film.id %>"><%= film.title %></a></li>
+        <hr class="film-list-separator">
+      <%  end %>
+      </ul>
+  </body>
+</html>

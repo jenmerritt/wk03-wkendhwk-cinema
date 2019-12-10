@@ -69,6 +69,20 @@ film3 = Film.new({
 
 film3.save()
 
+film4 = Film.new({
+  'title' => 'Star Wars: The Rise of Skywalker',
+  'price' => 20
+  })
+
+film4.save()
+
+film5 = Film.new({
+  'title' => 'Knives Out',
+  'price' => 9
+  })
+
+film5.save()
+
 
 #### SCREENINGS:
 
